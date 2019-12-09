@@ -34,14 +34,23 @@ const users = [
   }
 ];
 const filtered2Users = users.filter(
-  user => user.visitedPark == true && user.boughtItems == true
+  user => user.visitedPark == true || user.boughtItems == true
 );
 
-if (filtered2Users.length == 0) {
-  console.log("There are no users");
-} else {
+if (filtered2Users) {
   console.table(filtered2Users);
 }
+
+const usersVisitedBought = users.map(user => {
+  const newUser = {
+    name: `${user.name} `,
+    visitedPark: `${user.visitedPark}`,
+    boughtItems: `${user.boughtItems}`
+  };
+  return newUser;
+});
+console.table(usersVisitedBought);
+
 // 2) Для каждого элемента массива users выведите сообщение в консоль, только если пользователь посетил парк или совершил покупку
 // Используйте foreach или for, а потом if внутри петли
 
@@ -49,7 +58,6 @@ let iterationCounter = "Each iteration adds a *: ";
 
 for (let i = 0; i < 10; i++) {
   iterationCounter += "*";
-  let i = "*";
 }
 console.log(iterationCounter);
 // 3) Используя assigment operator(+=) поменяйте значение переменоой iterationCounter, добавляя по одной звездочке при каждой итерации
